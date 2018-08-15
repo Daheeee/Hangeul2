@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:weightSum="620"
+    tools:context="com.dongduk.hangeul.hangeul_test1.RegisterActivity">
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30" />
+
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="560"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true">
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_marginTop="89dp"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:errorEnabled="true"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:layout_marginTop="20dp"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_re_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:errorEnabled="true"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/editTextPassword2"
+                android:layout_width="256dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<Button-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:id="@+id/buttonSignUp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="회원가입"/>-->
+
+    </LinearLayout>
+
+</LinearLayout>

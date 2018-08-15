@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_view"
+    tools:context="com.dongduk.hangeul.hangeul_test1.MyRecordActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_record"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="130dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/btnDeleteRecord"
+        android:layout_width="match_parent"
+        android:layout_height="49.3dp"
+        android:layout_gravity=""
+        android:background="#c4792f"
+        android:text="삭제"
+        android:textColor="#ffffff"
+        android:visibility="gone" />
+
+</LinearLayout>

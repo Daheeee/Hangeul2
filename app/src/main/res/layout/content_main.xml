@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_main"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.dongduk.hangeul.hangeul_test1.MainActivity"
+    >
+
+
+    <TextView
+        android:id="@+id/tvDateMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:text="2017.08.21"
+        android:textAlignment="center"
+        android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="388.6"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMeaning04"
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:text=" "
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvMeaning03"
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:text=" "
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvMeaning02"
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:text="간\n수\n함.\n\n일\n을\n\n끝\n맺\n음\n\n"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvMeaning01"
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:text="물\n건\n을\n\n잘\n\n정\n리\n하\n여\n"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvWordMain"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="70dp"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="20dp"
+                android:text="갈무리"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="48dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="40"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnList"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00ff0000"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="글보기"
+                android:textSize="16sp"
+                android:paddingBottom="24dp"/>
+
+
+            <Button
+                android:id="@+id/btnWrite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00ff0000"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="글쓰기"
+                android:textColor="#c4792f"
+                android:textSize="16sp"
+                android:paddingBottom="24dp"/>
+        </LinearLayout>
+
+
+</LinearLayout>

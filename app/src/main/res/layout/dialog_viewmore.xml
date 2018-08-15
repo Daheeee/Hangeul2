@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvDateVmore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="20dp"
+        android:text="2017.09.16"
+        android:textAlignment="center"
+        android:textColor="#99000000"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4"
+            android:background="@drawable/image_line">
+
+            <TextView
+                android:id="@+id/tvContentVmore08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvContentVmore07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvContentVmore06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvContentVmore05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" "
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="4"
+            android:background="@drawable/image_line">
+
+            <TextView
+                android:id="@+id/tvContentVmore04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="힘\n들\n다\n\n"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvContentVmore03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="밀\n려\n오\n는\n\n주\n니\n를\n\n떨\n치\n기\n\n"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvContentVmore02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="반\n복\n되\n는\n\n하\n루\n에\n\n"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvContentVmore01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="오\n늘\n도\n\n어\n제\n와\n\n똑\n같\n은\n\n"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

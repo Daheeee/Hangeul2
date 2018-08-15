@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Hangeul</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="values">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4 is really long</item>
+        <item>Item 5</item>
+        <item>Item 6</item>
+    </string-array>
+</resources>
