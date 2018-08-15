@@ -28,6 +28,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -48,9 +53,14 @@ public class MainActivity extends BaseActivity
     private BackPressCloseHandler backPressCloseHandler;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private DatabaseReference mDatabase;
+
     String email;
     TextView tvDateMain, tvWordMain, tvMeaning01, tvMeaning02, tvMeaning03, tvMeaning04, tvEmail;
     Button btnWrite;
+    String id = "";
+    Word value;
+
 
     SimpleDateFormat df;
 
@@ -109,66 +119,69 @@ public class MainActivity extends BaseActivity
         String currentDateTimeString = df.format(new Date());
         tvDateMain.setText(currentDateTimeString);
 
-        ApplicationController application = ApplicationController.getInstance();
-        //application.buildNetworkService("ab2a6169.ngrok.io");
-        application.buildNetworkService("54.237.215.221", 8000);
-        networkService = ApplicationController.getInstance().getNetworkService();
+//        ApplicationController application = ApplicationController.getInstance();
+//        application.buildNetworkService("us-central1-hanguel-6c329.cloudfunctions.net/");
+////        application.buildNetworkService("54.237.215.221", 8000);
+//        networkService = ApplicationController.getInstance().getNetworkService();
 
-        //Restaurant GET
-        Call<Word> getCall = networkService.get_word();
-        getCall.enqueue(new Callback<Word>() {
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("word").child("6");
+        // Read from the database
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onResponse(Call<Word> call, Response<Word> response) {
-                if( response.isSuccessful()) {
-                    Word word = response.body();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
 
-                    wordMeaning = word.getWordDesc();
+                value = dataSnapshot.getValue(Word.class);
+                Log.d("MainActivity", "Value is: " + value.getTitle());
 
-                    meaning01 = ""; meaning02 = ""; meaning03 = ""; meaning04 = "";
-                    countSpace = 0;
 
-                    SharedPreferences pr = getSharedPreferences("pr", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pr.edit();
+                meaning01 = ""; meaning02 = ""; meaning03 = ""; meaning04 = "";
+                countSpace = 0;
 
-                    editor.putString("word", word.getWord());
-                    editor.putString("wid", Long.toString(word.getWid()));
+                SharedPreferences pr = getSharedPreferences("pr", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pr.edit();
+
+                editor.putString("word", value.getTitle());
+                editor.putString("wid", Long.toString(value.getId()));
 //        editor.putString(tvWordMain.getText().toString(), tvMeaning01.getText().toString() + tvMeaning02.getText().toString() + tvMeaning03.getText().toString() + tvMeaning04.getText().toString());
-                    editor.putString(word.getWord(), word.getWordDesc());
-                    editor.commit();
+                editor.putString(value.getTitle(), value.getContent());
+//                            editor.putString("date", currentDateTimeString);
 
-                    for(int i = 0; i < word.getWordDesc().length(); i++) {
-                        meaning = "";
+                editor.commit();
 
-                        if(word.getWordDesc().charAt(i) == ' ') {
-                            meaning += word.getWordDesc().charAt(i) + "\n\n";
-                            countSpace ++;
-                        } else {
-                            meaning += word.getWordDesc().charAt(i);
-                        }
+                for(int i = 0; i < value.getContent().length(); i++) {
+                    meaning = "";
 
-                        if (countSpace <3) meaning01 += meaning;
-                        else if (countSpace >=3 && countSpace < 6) meaning02 += meaning;
-                        else if (countSpace >=6 && countSpace < 9) meaning03 += meaning;
-                        else if (countSpace >=9) meaning04 += meaning;
+                    if(value.getContent().charAt(i) == ' ') {
+                        meaning += value.getContent().charAt(i) + "\n\n";
+                        countSpace ++;
+                    } else {
+                        meaning += value.getContent().charAt(i);
                     }
 
-                    tvWordMain.setText(word.getWord().toString());
-                    tvMeaning01.setText("\n\n" + meaning01);
-                    tvMeaning02.setText(meaning02);
-                    tvMeaning03.setText(meaning03);
-                    tvMeaning04.setText(meaning04);
-
-                } else {
-                    int StatusCode = response.code();
-                    Log.i(ApplicationController.TAG, "Status Code : " + StatusCode + " Error Message : " + response.errorBody());
+                    if (countSpace <3) meaning01 += meaning;
+                    else if (countSpace >=3 && countSpace < 6) meaning02 += meaning;
+                    else if (countSpace >=6 && countSpace < 9) meaning03 += meaning;
+                    else if (countSpace >=9) meaning04 += meaning;
                 }
+
+                tvWordMain.setText(value.getTitle().toString());
+                tvMeaning01.setText("\n\n" + meaning01);
+                tvMeaning02.setText(meaning02);
+                tvMeaning03.setText(meaning03);
+                tvMeaning04.setText(meaning04);
             }
 
             @Override
-            public void onFailure(Call<Word> call, Throwable t) {
-                Log.i(ApplicationController.TAG, "Fail Message : " + t.getMessage());
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("MainActivity", "Failed to read value.", error.toException());
             }
         });
+
+
 
 
 

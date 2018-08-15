@@ -28,8 +28,8 @@ public interface NetworkService {
     @DELETE("/api/words/{pk}/")
     Call<Word> delete_word(@Path("pk") int pk);
 
-    @GET("/words/")
-    Call<Word> get_word();
+    @GET("/helloWorld/")
+    Call<String> get_word_id();
 
     @GET("/api/versions/{pk}/")
     Call<Word> get_pk_word(@Path("pk") int pk);

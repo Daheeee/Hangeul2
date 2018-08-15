@@ -34,7 +34,7 @@
                 android:layout_width="14dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="13dp"
-                android:text=" "
+                android:text="마\n음\n씨\n가\n\n부\n드\n럽\n고\n\n다\n스\n럽\n다\m\n."
                 android:textSize="14dp" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:layout_width="14dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="13dp"
-                android:text=" "
+                android:text="속\n이\n\n너\n르\n다\n.\n"
                 android:textSize="14dp" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_width="14dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="13dp"
-                android:text="간\n수\n함.\n\n일\n을\n\n끝\n맺\n음\n\n"
+                android:text="겉\n으\n로\n\n보\n기\n\n보\n다\n"
                 android:textSize="14dp" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_width="14dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
-                android:text="물\n건\n을\n\n잘\n\n정\n리\n하\n여\n"
+                android:text="집\n에\n나\n\n세\n간\n\n따\n위\n\가n"
                 android:textSize="14dp" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_marginRight="70dp"
                 android:layout_marginLeft="10dp"
                 android:paddingTop="20dp"
-                android:text="갈무리"
+                android:text="살갑다"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="48dp"
