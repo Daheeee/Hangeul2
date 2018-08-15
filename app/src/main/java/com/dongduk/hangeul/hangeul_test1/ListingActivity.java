@@ -55,8 +55,8 @@ public class ListingActivity extends BaseActivity {
         tvMeaningList = (TextView) findViewById(R.id.tvMeaningList);
 
         SharedPreferences pr = getSharedPreferences("pr", MODE_PRIVATE);
-        tvWordList.setText(pr.getString("word", ""));
-        tvMeaningList.setText(pr.getString(tvWordList.getText().toString(), ""));
+//        tvWordList.setText(pr.getString("word", ""));
+//        tvMeaningList.setText(pr.getString(tvWordList.getText().toString(), ""));
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_listing);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
