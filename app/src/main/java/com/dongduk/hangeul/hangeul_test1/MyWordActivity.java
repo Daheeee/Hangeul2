@@ -1,6 +1,8 @@
 package com.dongduk.hangeul.hangeul_test1;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -41,6 +43,7 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
     private RecyclerView recyclerView;
     private List<MyWord> wordList;
     int centerPos;
+    boolean radiostate=false;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -75,23 +78,12 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
         wordList = new ArrayList<>();
         wordList.add(new MyWord("       ", "", "", ""));
         wordList.add(new MyWord("       ", "", "", ""));
-        wordList.add(new MyWord("09.20", "살\n갑\n다\n", "집\n에\n나\n\n세\n간\n\n따\n위\n가", "겉\n으\n로\n\n보\n기\n\n보\n다\n속\n이\n\n너\n르\n다."));
-        wordList.add(new MyWord("09.18", "가\n시\n버\n시\n", "부\n부\n를\n\n속\n되\n게", "이\n르\n는\n\n말."));
-        wordList.add(new MyWord("09.14", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("08.20", "꽃\n샘\n", " ", "봄\n철\n\n꽃\n이\n\n필\n\n무\n렵\n의\n\n추\n위."));
-        wordList.add(new MyWord("08.13", "모\n가\n\n", "인\n부\n나\n\n광\n대\n등\n의\n\n우\n두\n머\n리.", "낮\n은\n\n패\n의\n\n우\n두\n머\n리"));
-        wordList.add(new MyWord("09.09", "살\n갑\n다\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "꽃\n샘\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
-        wordList.add(new MyWord("09.09", "미\n리\n내\n", "가\n르\n거\n나\n\n쪼\n개\n지\n\n않\n고.", "자\n연\n그\n대\n로\n\n언\n제\n나\n\n변\n함\n없\n이\n"));
+        wordList.add(new MyWord("08.15", "살\n갑\n다", "겉\n으\n로\n\n보\n기\n\n보\n다\n속\n이\n\n너\n르\n다\n.\n", "집\n에\n나\n\n세\n간\n\n따\n위\n가\n"));
+        wordList.add(new MyWord("08.13", "비\n보\n라", "휘\n몰\n아\n치\n는\n\n비\n.\n", "세\n찬\n\n바\n람\n과\n\n함\n께\n\n"));
+        wordList.add(new MyWord("08.08", "밤\n볼", "살\n이\n\n볼\n록\n하\n게\n\n찐\n\n볼\n.\n", "입\n\n안\n에\n\n밤\n을\n\n문\n\n것\n처\n럼\n"));
+        wordList.add(new MyWord("08.07", "치\n룽\n구\n니",  "낮\n잡\n아\n\n이\n르\n는\n\n말\n.\n", "어\n리\n석\n어\n서\n\n쓸\n모\n가\n\n없\n는\n\n사\n람\n을\n"));
+        wordList.add(new MyWord("08.01", "쥐\n뿔", "것\n을\n\n비\n유\n적\n으\n로\n\n이\n르\n는\n\n말\n.\n", "아\n주\n\n보\n잘\n것\n없\n거\n나\n\n규\n모\n가\n\n작\n은\n\n"));
+        wordList.add(new MyWord("07.31", "까\n치\n걸\n음",  "걷\n는\n\n걸\n음\n.\n", "발\n뒤\n꿈\n치\n를\n\n들\n고\n\n살\n살\n\n"));
         wordList.add(new MyWord("       ", "", "", ""));
         wordList.add(new MyWord("       ", "", "", ""));
 
@@ -112,8 +104,6 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
 
         recyclerView.setAdapter(myWordAdapter);
 
-
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -122,50 +112,60 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
                 int center = recyclerView.getWidth() / 2;
                 View centerView = recyclerView.findChildViewUnder(center, recyclerView.getTop());
                 centerPos = recyclerView.getChildAdapterPosition(centerView);
+                prevCenterPos = centerPos - 2;
 
                 if (prevCenterPos != centerPos) {
                     // dehighlight the previously highlighted view
                     View prevView = recyclerView.getLayoutManager().findViewByPosition(prevCenterPos);
 
-                    if (prevView != null) {
-                        Log.d("preview", Integer.toString(prevCenterPos));
-                        TextView textView = (TextView) prevView.findViewById(R.id.tvMyWord);
-                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                        textView.setTypeface(textView.getTypeface(), Typeface.NORMAL);
-                        textView.setTextColor(Color.LTGRAY);
+                    Log.d("preview", Integer.toString(prevCenterPos));
+                    Log.d("centerView", Integer.toString(centerPos));
 
-                        TextView desc1 = (TextView)prevView.findViewById(R.id.tvDesc1);
-                        TextView desc2 = (TextView)prevView.findViewById(R.id.tvDesc2);
+                    if(prevView != null && centerView != null) {
+                        for (int i = prevCenterPos; i <= centerPos + 2; i++) {
+                            View view = recyclerView.getLayoutManager().findViewByPosition(i);
 
-                        RadioButton radioButton = (RadioButton)prevView.findViewById(R.id.radio);
+                            if (i == centerPos) {
+                                Log.d("radiostate", Boolean.toString(radiostate));
+                                TextView textView = (TextView) centerView.findViewById(R.id.tvMyWord);
 
+                                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+                                textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+                                textView.setTextColor(Color.BLACK);
 
-                        desc1.setVisibility(View.GONE);
-                        desc2.setVisibility(View.GONE);
+                                TextView desc1 = (TextView) centerView.findViewById(R.id.tvDesc1);
+                                TextView desc2 = (TextView) centerView.findViewById(R.id.tvDesc2);
 
+                                desc1.setVisibility(View.VISIBLE);
+                                desc2.setVisibility(View.VISIBLE);
+
+                                if( radiostate == true ) {
+                                    RadioButton radiobtn = (RadioButton) centerView.findViewById(R.id.radiobtn);
+                                    radiobtn.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#c4792f")));
+                                }
+                            } else {
+                                TextView textView = (TextView) view.findViewById(R.id.tvMyWord);
+
+                                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                                textView.setTypeface(textView.getTypeface(), Typeface.NORMAL);
+                                textView.setTextColor(Color.parseColor("#808080"));
+
+                                TextView desc1 = (TextView) view.findViewById(R.id.tvDesc1);
+                                TextView desc2 = (TextView) view.findViewById(R.id.tvDesc2);
+
+                                desc1.setVisibility(View.GONE);
+                                desc2.setVisibility(View.GONE);
+
+                                if( radiostate == true ){
+                                    RadioButton radiobtn = (RadioButton) view.findViewById(R.id.radiobtn);
+                                    radiobtn.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#e1e0e0")));
+                                }
+                            }
+                        }
                     }
-
-                    // highlight view in the middle
-                    if (centerView != null) {
-                        Log.d("centerView", Integer.toString(centerPos));
-                        TextView textView = (TextView) centerView.findViewById(R.id.tvMyWord);
-
-                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-                        textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-                        textView.setTextColor(Color.BLACK);
-
-                        TextView desc1 = (TextView)centerView.findViewById(R.id.tvDesc1);
-                        TextView desc2 = (TextView)centerView.findViewById(R.id.tvDesc2);
-
-                        desc1.setVisibility(View.VISIBLE);
-                        desc2.setVisibility(View.VISIBLE);
-                    }
-
-                    prevCenterPos = centerPos;
                 }
             }
         });
-
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,13 +211,14 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
                 btnDelete.setVisibility(View.VISIBLE);
                 myWordAdapter.setRadioButton(true);
                 recyclerView.setAdapter(deleteAdapter);
-
+                radiostate = true;
             }
             else if(item.getTitle().equals("취소")){
                 item.setTitle("수정");
                 btnDelete.setVisibility(View.GONE);
                 myWordAdapter.setRadioButton(false);
                 recyclerView.setAdapter(myWordAdapter);
+                radiostate = false;
             }
 
             return true;
@@ -238,8 +239,6 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
             mIntent = new Intent(this, MainActivity.class);
             startActivity(mIntent);
             finish();
-
-
         } else if (id == R.id.myWord) {
             //현재페이지
         } else if (id == R.id.myRecord) {

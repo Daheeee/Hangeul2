@@ -44,9 +44,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
-
 //        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
 

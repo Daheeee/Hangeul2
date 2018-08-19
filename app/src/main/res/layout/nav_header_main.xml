@@ -27,7 +27,7 @@
         android:id="@+id/tvUserId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="yoon3046@naver.com"
+        android:text="test@test.com"
         android:textColor="@android:color/black" />
 
 </LinearLayout>

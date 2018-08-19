@@ -7,82 +7,82 @@
     android:gravity="center_horizontal"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    android:weightSum="620"
     tools:context="com.dongduk.hangeul.hangeul_test1.LoginActivity">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="170" />
-
     <ImageView
-        android:layout_width="45.7dp"
-        android:layout_height="103.3dp"
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="60dp"
+        android:background="@drawable/logo_new_02"/>
 
-        android:background="@mipmap/logo"/>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="70" />
+        android:layout_height="120dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="200">
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_email"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/editTextEmail"
-                android:layout_width="256dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="E-mail"
+                android:textColorHint="@color/colorGray"
                 android:inputType="textEmailAddress"
-                android:textCursorDrawable="@null" />
-
+                 />
 
         </android.support.design.widget.TextInputLayout>
 
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_password"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/editTextPassword"
-                android:layout_width="256dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29.7dp"
+                android:layout_marginTop="25dp"
                 android:hint="Password"
+                android:textColorHint="@color/colorGray"
                 android:inputType="textPassword"
-                 />
+                />
 
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
-
     <Button
         android:id="@+id/buttonSignIn"
-        android:layout_width="253dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="34.3dp"
-        android:background="#c4792f"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/btn_login_bg"
         android:gravity="center"
         android:text="로그인"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorGray"
         android:textSize="16sp"/>
 
     <TextView
@@ -93,9 +93,5 @@
         android:text="회원가입"
         android:textSize="12sp"
         android:textColor="#c4792f" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="170" />
 
 </LinearLayout>

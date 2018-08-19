@@ -70,11 +70,11 @@ public class ListingActivity extends BaseActivity {
 
         List<ListingCard> cards = new ArrayList<>();
         ListingCard[] card = new ListingCard[ITEM_SIZE];
-        card[0] = new ListingCard("2017.09.17","날\n\n 보\n는\n\n 그\n\n 아\n이\n의\n\n 표\n정\n이\n\n ","살\n갑\n다\n.\n\n마\n음\n\n속\n에\n ","꽃\n\n한\n송\n이\n가\n\n폈\n다\n.\n","","","");
-        card[1] = new ListingCard("2017.09.17","찰\n랑\n찰\n랑\n\n밀\n려\n\n들\n어\n오\n는\n\n","물\n결\n이\n\n어\n떻\n게\n\n살\n가\n운\n지\n\n","몰\n랐\n다\n.\n\n","","","");
-        card[2] = new ListingCard("2017.09.16","겉\n으\n로\n는\n\n다\n가\n가\n기\n\n","어\n려\n워\n보\n여\n도\n\n선\n생\n님\n은\n\n","그\n\n누\n구\n보\n다\n\n살\n가\n운\n","분\n이\n셨\n다\n.\n\n","","");
-        card[3] = new ListingCard("2017.09.14","형\n이\n라\n고\n\n해\n도\n\n살\n가\n운\n","정\n을\n\n느\n끼\n기\n보\n다\n는\n\n","믿\n음\n직\n스\n러\n우\n면\n서\n도\n\n어\n려\n웠\n다\n.\n","","","");
-        card[4] = new ListingCard("2017.09.10","살\n갑\n기\n는\n\n평\n양\n\n나\n막\n신\n\n","-\n속\n담\n","","","","");
+        card[0] = new ListingCard("2018.08.15","날\n\n보\n는\n\n그\n\n아\n이\n의\n\n표\n정\n이\n\n ","살\n갑\n다\n.\n\n마\n음\n\n속\n에\n ","꽃\n\n한\n송\n이\n가\n\n폈\n다\n.\n","","","");
+        card[1] = new ListingCard("2018.07.15","찰\n랑\n찰\n랑\n\n밀\n려\n\n들\n어\n오\n는\n\n","물\n결\n이\n\n어\n떻\n게\n\n살\n가\n운\n지\n\n","몰\n랐\n다\n.\n\n","","","");
+        card[2] = new ListingCard("2018.07.01","겉\n으\n로\n는\n\n다\n가\n가\n기\n\n","어\n려\n워\n보\n여\n도\n\n선\n생\n님\n은\n\n","그\n\n누\n구\n보\n다\n\n살\n가\n운\n","분\n이\n셨\n다\n.\n\n","","");
+        card[3] = new ListingCard("2018.06.30","형\n이\n라\n고\n\n해\n도\n\n살\n가\n운\n","정\n을\n\n느\n끼\n기\n보\n다\n는\n\n","믿\n음\n직\n스\n러\n우\n면\n서\n도\n\n어\n려\n웠\n다\n.\n","","","");
+        card[4] = new ListingCard("2018.06.18","살\n갑\n기\n는\n\n평\n양\n\n나\n막\n신\n\n","-\n속\n담\n","","","","");
 
         for (int i = 0; i < ITEM_SIZE; i++) {
             cards.add(card[i]);

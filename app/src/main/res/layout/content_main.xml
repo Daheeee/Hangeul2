@@ -34,7 +34,7 @@
                 android:layout_width="14dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="13dp"
-                android:text="마\n음\n씨\n가\n\n부\n드\n럽\n고\n\n다\n스\n럽\n다\m\n."
+                android:text="마\n음\n씨\n가\n\n부\n드\n럽\n고\n\n다\n스\n럽\n다\n."
                 android:textSize="14dp" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_width="14dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
-                android:text="집\n에\n나\n\n세\n간\n\n따\n위\n\가n"
+                android:text="집\n에\n나\n\n세\n간\n\n따\n위\n\가\n"
                 android:textSize="14dp" />
 
             <TextView

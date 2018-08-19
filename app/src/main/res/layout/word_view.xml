@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="21.5dp"
-        android:paddingRight="21.5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvDate"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-
+        android:id="@+id/tvDate"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
 
     <View
         android:layout_width="match_parent"
@@ -30,14 +23,17 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_gravity="center"
         android:paddingLeft="21.5dp"
         android:paddingRight="21.5dp">
 
         <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/radio"
+            android:id="@+id/radiobtn"
+            android:scaleX="1.20"
+            android:scaleY="1.20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14.7dp"
@@ -50,18 +46,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:textColor="#808080"
             android:gravity="center"
             android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
                 android:id="@+id/tvDesc1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="top"
                 android:textSize="10sp"
@@ -69,17 +71,16 @@
                 />
             <TextView
                 android:id="@+id/tvDesc2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="top"
                 android:textSize="10sp"
                 android:visibility="gone"
-               />
+                />
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

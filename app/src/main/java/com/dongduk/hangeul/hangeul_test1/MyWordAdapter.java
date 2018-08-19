@@ -36,20 +36,20 @@ public class MyWordAdapter extends RecyclerView.Adapter<MyWordAdapter.MyViewHold
             myword = (TextView) view.findViewById(R.id.tvMyWord);
             desc1 = (TextView) view.findViewById(R.id.tvDesc1);
             desc2 = (TextView) view.findViewById(R.id.tvDesc2);
-            radioButton = (RadioButton) view.findViewById(R.id.radio);
+            radioButton = (RadioButton) view.findViewById(R.id.radiobtn);
         }
-
 
     }
 
-    public MyWordAdapter(List<MyWord> countryList, boolean radioFlag) {
-        this.wordList = countryList;
+    public MyWordAdapter(List<MyWord> wordList, boolean radioFlag) {
+        this.wordList = wordList;
         this.radioFlag = radioFlag;
     }
 
     public void setRadioButton(boolean flag){
         radioFlag = flag;
     }
+
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         MyWord myword = wordList.get(position);
@@ -98,7 +98,5 @@ public class MyWordAdapter extends RecyclerView.Adapter<MyWordAdapter.MyViewHold
                 .inflate(R.layout.word_view,parent, false);
         return new MyViewHolder(v);
     }
-
-
 
 }
