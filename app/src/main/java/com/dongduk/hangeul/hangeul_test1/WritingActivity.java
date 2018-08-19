@@ -104,13 +104,13 @@ public class WritingActivity extends BaseActivity {
                 dialog = new AlertDialog.Builder(this)
                         .setMessage("글을 저장합니다")
 
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 post_writing();
                             }
                         })
-                        .setNegativeButton("취소", null)
+                        .setNegativeButton(getString(R.string.cancel), null)
                         .show();
 
                 return true;

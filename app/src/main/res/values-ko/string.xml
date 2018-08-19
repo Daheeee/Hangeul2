@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="todayWord">오늘의 우리말</string>
+    <string name="myWord">나의 우리말</string>
+    <string name="myRecord">나의 글자취</string>
+    <string name="language">언어</string>
+    <string name="logout">로그아웃</string>
+    <string name="save">담기</string>
+    <string name="view">글보기</string>
+    <string name="write">글쓰기</string>
+    <string name="save_word">나의 우리말에 담겼습니다</string>
+    <string name="close_writing">글쓰기를 종료하시겠습니까?</string>
+    <string name="okay">확인</string>
+    <string name="cancel">취</string>
+    <string name="delete">삭제</string>
+    <string name="view_more">더보기</string>
+    <string name="save_writing">글을 저장합니다</string>
+    <string name="writing_desc">우리말로 아름다운 문장을 완성해보세요.\n(100자내외)</string>
+</resources>

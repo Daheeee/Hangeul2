@@ -12,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,23 +29,41 @@ public class MyRecordAdapter extends RecyclerView.Adapter<MyRecordAdapter.ViewHo
     Context context;
     List<MyRecordCard> cards;
     int item_layout;
+    boolean radioFlag;
+    private RadioButton radioButton;
+    int index;
 
 
 
-    public MyRecordAdapter(Context context, List<MyRecordCard> cards, int item_layout) {
+    private List<Integer> radioPos =  new ArrayList<Integer>();
+
+
+
+
+    public MyRecordAdapter(Context context, List<MyRecordCard> cards, int item_layout, boolean radioFlag) {
         this.context = context;
         this.cards = cards;
         this.item_layout = item_layout;
+        this.radioFlag = radioFlag;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_myrecord, null);
+
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
+
+        if(radioFlag == false){
+            holder.radioButton.setVisibility(View.INVISIBLE);
+        }else{
+            holder.radioButton.setVisibility(View.VISIBLE);
+        }
+
         final MyRecordCard card = cards.get(position);
         holder.tvDateRecord.setText(card.getTvDateRecord());
         holder.tvWordRecord.setText(card.getTvWordRecord());
@@ -51,6 +71,20 @@ public class MyRecordAdapter extends RecyclerView.Adapter<MyRecordAdapter.ViewHo
         holder.tvContentRecord02.setText(card.getTvContentRecord02());
         holder.tvContentRecord03.setText(card.getTvContentRecord03());
         holder.tvContentRecord04.setText(card.getTvContentRecord04());
+
+        holder.radioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.radioButton.isChecked()==true) {
+                    radioPos.add(position);
+
+                }
+                else {
+                    radioPos.remove(radioPos.indexOf(position));
+                }
+            }
+        });
+
         holder.cardview.setOnLongClickListener(new View.OnLongClickListener() {
             int pos = position;
             @Override
@@ -81,6 +115,15 @@ public class MyRecordAdapter extends RecyclerView.Adapter<MyRecordAdapter.ViewHo
             }
         });
     }
+    public void setRadioButton(boolean flag){
+        radioFlag = flag;
+    }
+
+    public boolean getRadio() { return radioFlag; }
+
+    public List<Integer> getRadioPos() {
+        return radioPos;
+    }
 
     @Override
     public int getItemCount() {
@@ -90,6 +133,8 @@ public class MyRecordAdapter extends RecyclerView.Adapter<MyRecordAdapter.ViewHo
     public void onItemRemove(int position) {
         cards.remove(position);
         notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount());
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -103,6 +148,8 @@ public class MyRecordAdapter extends RecyclerView.Adapter<MyRecordAdapter.ViewHo
         Button btnVmoveRecord;
         Button btnDeleteRecord;
         CardView cardview;
+        RadioButton radioButton;
+
 
 
         public ViewHolder(View itemView) {
@@ -117,7 +164,10 @@ public class MyRecordAdapter extends RecyclerView.Adapter<MyRecordAdapter.ViewHo
             btnVmoveRecord = (Button) itemView.findViewById(R.id.btn_vmore_record);
             //btnDeleteRecord = (Button) v.findViewById(R.id.btnDeleteRecord);
             cardview = (CardView) itemView.findViewById(R.id.cv_myrecord);
+            radioButton = (RadioButton) itemView.findViewById(R.id.radio);
+
         }
+
     }
 
 }

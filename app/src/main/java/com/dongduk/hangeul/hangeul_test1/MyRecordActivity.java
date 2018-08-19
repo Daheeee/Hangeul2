@@ -3,6 +3,7 @@ package com.dongduk.hangeul.hangeul_test1;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,11 +18,13 @@ import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,11 +32,17 @@ import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MyRecordActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     final int ITEM_SIZE = 5;
     private BackPressCloseHandler backPressCloseHandler;
+    private Button btnDelete;
+    private MyRecordAdapter mAdapter;
+    private MyRecordAdapter deleteAdapter;
+    private RecyclerView recyclerView;
+    private SnapHelper snapHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +50,7 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
         setContentView(R.layout.activity_main);
         setTitle("");
         TextView tvTitle = (TextView)findViewById(R.id.tvTitle);
-        tvTitle.setText("나의 글자취");
+        tvTitle.setText(getString(R.string.myRecord));
 
         ViewStub stub = (ViewStub)findViewById(R.id.stub);
         stub.setLayoutResource(R.layout.activity_my_record);
@@ -49,6 +58,8 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        btnDelete = (Button)findViewById(R.id.btnDeleteRecord);
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 
@@ -60,11 +71,11 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_record);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_record);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setHasFixedSize(true);
 
-        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
 
         recyclerView.setLayoutManager(layoutManager);
@@ -74,15 +85,16 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
         MyRecordCard[] card = new MyRecordCard[ITEM_SIZE];
         card[0] = new MyRecordCard("2018.08.15", "살\n갑\n다\n","날\n\n보\n는\n\n그\n\n아\n이\n의\n\n표\n정\n이\n","살\n갑\n다\n.\n\n마\n음\n\n속\n에\n\n","꽃\n\n한\n송\n이\n가\n\n폈\n다\n.\n","");
         card[1] = new MyRecordCard("2018.08.10", "미\n쁘\n다\n","여\n기\n저\n기\n\n눈\n치\n를\n\n살\n피\n는\n","모\n습\n이\n\n도\n무\n지\n\n미\n쁘\n게\n","보\n이\n지\n\n않\n는\n다\n.\n","");
-        card[2] = new MyRecordCard("2018.08.01", "여\n우\n비\n","한\n여\n름\n에\n\n예\n상\n치\n도\n못\n한\n","여\n우\n비\n를\n\n만\n났\n다\n.\n ","내\n\n마\n음\n도\n\n보\n슬\n보\n슬\n","");
-        card[3] = new MyRecordCard("2018.07.25", "주\n니\n","오\n늘\n도\n\n어\n제\n와\n\n똑\n같\n은\n","반\n복\n되\n는\n\n하\n루\n에\n","밀\n려\n오\n는\n\n주\n니\n를\n\n떨\n치\n기\n ","힘\n들\n다\n");
-        card[4] = new MyRecordCard("2018.07.24", "허\n출\n하\n다\n","과\n제\n를\n\n하\n다\n\n한\n끼\n도\n","먹\n지\n\n못\n했\n다\n.\n\n허\n출\n하\n다\n.\n","","");
+        card[2] = new MyRecordCard("2018.07.20", "여\n우\n비\n","한\n여\n름\n에\n\n예\n상\n치\n도\n못\n한\n","여\n우\n비\n를\n\n만\n났\n다\n.\n ","내\n\n마\n음\n도\n\n보\n슬\n보\n슬\n","");
+        card[3] = new MyRecordCard("2018.07.12", "주\n니\n","오\n늘\n도\n\n어\n제\n와\n\n똑\n같\n은\n","반\n복\n되\n는\n\n하\n루\n에\n","밀\n려\n오\n는\n\n주\n니\n를\n\n떨\n치\n기\n ","힘\n들\n다\n");
+        card[4] = new MyRecordCard("2018.06.30", "허\n출\n하\n다\n","과\n제\n를\n\n하\n다\n\n한\n끼\n도\n","먹\n지\n\n못\n했\n다\n.\n\n허\n출\n하\n다\n.\n","","");
 
         for (int i = 0; i < ITEM_SIZE; i++) {
             cards.add(card[i]);
         }
 
-        MyRecordAdapter mAdapter = new MyRecordAdapter(getApplicationContext(), cards, R.layout.activity_my_record);
+        mAdapter = new MyRecordAdapter(getApplicationContext(), cards, R.layout.activity_my_record, false);
+        deleteAdapter = new MyRecordAdapter(getApplicationContext(), cards, R.layout.activity_my_record, true);
 
         recyclerView.setAdapter(mAdapter);
     }
@@ -97,25 +109,42 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.barbtn, menu);
-//        MenuItem item = menu.getItem(0);
-//        item.setTitle("수정");
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if (id == R.id.barBtn) {    // 수정버튼
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.barbtn, menu);
+        MenuItem item = menu.getItem(0);
+        item.setTitle(getString(R.string.delete));
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //수정버튼 클릭시
+        if (id == R.id.barBtn) {
+
+            if(item.getTitle().equals(getString(R.string.delete))){
+                item.setTitle(getString(R.string.cancel));
+                btnDelete.setVisibility(View.VISIBLE);
+                mAdapter.setRadioButton(true);
+                recyclerView.setAdapter(deleteAdapter);
+
+            }
+            else if(item.getTitle().equals(getString(R.string.cancel))){
+                item.setTitle(R.string.delete);
+                btnDelete.setVisibility(View.INVISIBLE);
+                mAdapter.setRadioButton(false);
+                recyclerView.setAdapter(mAdapter);
+            }
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -134,7 +163,36 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
             finish();
         } else if (id == R.id.myRecord) {
             // 현재 페이지
-        } else if (id == R.id.setting) {
+        }
+
+        else if(id == R.id.language) {
+            Locale locale = getResources().getConfiguration().locale;
+            String language =  locale.getLanguage();
+
+            Locale en = Locale.US;
+            Locale ko = Locale.KOREA;
+
+            Configuration config = new Configuration();
+
+            Log.d("MainActivity", "언어 : " + language);
+
+            if(language.equals("en")){
+                config.locale = ko;
+
+            }
+            else{
+                config.locale = en;
+
+            }
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+
+
+        }
+        else if (id == R.id.setting) {
 
         }
 
@@ -158,6 +216,17 @@ public class MyRecordActivity extends BaseActivity implements NavigationView.OnN
                 params.height = WindowManager.LayoutParams.WRAP_CONTENT;
                 dialog.getWindow().setAttributes(params);
                 break;
+            case R.id.btnDeleteRecord:
+
+                int roof = 0;
+
+                for(int pos :deleteAdapter.getRadioPos()){
+                    Log.d("RecordActivity", "roof : " + roof);
+                    deleteAdapter.onItemRemove(pos);
+//                    mAdapter.onItemRemove(0);
+                    roof++;
+
+                }
         }
     }
 

@@ -44,7 +44,7 @@
         android:layout_height="49.3dp"
         android:layout_gravity=""
         android:background="#c4792f"
-        android:text="삭제"
+        android:text="@string/delete"
         android:visibility="gone"
         android:textColor="#ffffff" />
 

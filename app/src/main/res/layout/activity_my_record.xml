@@ -11,19 +11,25 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_record"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="130dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="100dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
 
+    <TextView android:layout_height="0dip"
+        android:layout_width="fill_parent"
+        android:layout_weight="1" />
     <Button
         android:id="@+id/btnDeleteRecord"
         android:layout_width="match_parent"
         android:layout_height="49.3dp"
-        android:layout_gravity=""
+        android:layout_gravity="bottom"
         android:background="#c4792f"
-        android:text="삭제"
+        android:onClick="onClick"
+        android:text="@string/delete"
         android:textColor="#ffffff"
         android:visibility="gone" />
+
+
 
 </LinearLayout>

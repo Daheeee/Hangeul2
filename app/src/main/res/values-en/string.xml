@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="todayWord">Today\'s Hangeul Word</string>
+    <string name="myWord">My Hangeul Words</string>
+    <string name="myRecord">My Hangeul Works</string>
+    <string name="language">Language</string>
+    <string name="logout">Logout</string>
+    <string name="save">Save</string>
+    <string name="view">View</string>
+    <string name="write">Write</string>
+    <string name="save_word">It is saved in \'My Hangeul Words\'</string>
+    <string name="close_writing">Do you want to quit your writing?</string>
+    <string name="okay">Okay</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="view_more">View More</string>
+    <string name="save_writing">Successfully Saved!</string>
+    <string name="writing_desc">Make your own beautiful sentence in Hangeul.\n(less than 100 words)</string>
+</resources>

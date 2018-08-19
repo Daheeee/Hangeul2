@@ -5,19 +5,23 @@
         <item
             android:id="@+id/todayWord"
             android:icon="@mipmap/icon_1"
-            android:title="오늘의 우리말" />
+            android:title="@string/todayWord" />
         <item
             android:id="@+id/myWord"
             android:icon="@mipmap/icon_2"
-            android:title="나의 우리말" />
+            android:title="@string/myWord" />
         <item
             android:id="@+id/myRecord"
             android:icon="@mipmap/icon_3"
-            android:title="나의 글자취" />
+            android:title="@string/myRecord"/>
+        <item
+            android:id="@+id/language"
+            android:icon="@drawable/icon_5"
+            android:title="@string/language" />
         <item
             android:id="@+id/setting"
             android:icon="@mipmap/icon_4"
-            android:title="로그아웃" />
+            android:title="@string/logout" />
     </group>
 
 </menu>

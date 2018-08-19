@@ -2,6 +2,7 @@ package com.dongduk.hangeul.hangeul_test1;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -54,7 +55,7 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
 
         setTitle("");
         TextView tvTitle = (TextView)findViewById(R.id.tvTitle);
-        tvTitle.setText("나의 우리말");
+        tvTitle.setText(getString(R.string.myWord));
 
         ViewStub stub = (ViewStub)findViewById(R.id.stub);
         stub.setLayoutResource(R.layout.activity_my_word);
@@ -103,6 +104,8 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
         deleteAdapter = new MyWordAdapter(wordList, true);
 
         recyclerView.setAdapter(myWordAdapter);
+
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -167,6 +170,7 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
             }
         });
 
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,7 +198,7 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.barbtn, menu);
         item = menu.getItem(0);
-        item.setTitle("수정");
+        item.setTitle(getString(R.string.delete));
 
         return true;
     }
@@ -206,15 +210,15 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
         //수정버튼 클릭시
         if (id == R.id.barBtn) {
 
-            if(item.getTitle().equals("수정")){
-                item.setTitle("취소");
+            if(item.getTitle().equals(getString(R.string.delete))){
+                item.setTitle(R.string.cancel);
                 btnDelete.setVisibility(View.VISIBLE);
                 myWordAdapter.setRadioButton(true);
                 recyclerView.setAdapter(deleteAdapter);
                 radiostate = true;
             }
-            else if(item.getTitle().equals("취소")){
-                item.setTitle("수정");
+            else if(item.getTitle().equals(getString(R.string.cancel))){
+                item.setTitle(R.string.delete);
                 btnDelete.setVisibility(View.GONE);
                 myWordAdapter.setRadioButton(false);
                 recyclerView.setAdapter(myWordAdapter);
@@ -239,13 +243,43 @@ public class MyWordActivity extends BaseActivity implements NavigationView.OnNav
             mIntent = new Intent(this, MainActivity.class);
             startActivity(mIntent);
             finish();
+
+
         } else if (id == R.id.myWord) {
             //현재페이지
         } else if (id == R.id.myRecord) {
             mIntent = new Intent(this, MyRecordActivity.class);
             startActivity(mIntent);
             finish();
-        } else if (id == R.id.setting) {
+        }
+        else if(id == R.id.language) {
+            Locale locale = getResources().getConfiguration().locale;
+            String language =  locale.getLanguage();
+
+            Locale en = Locale.US;
+            Locale ko = Locale.KOREA;
+
+            Configuration config = new Configuration();
+
+            Log.d("MainActivity", "언어 : " + language);
+
+            if(language.equals("en")){
+                config.locale = ko;
+
+            }
+            else{
+                config.locale = en;
+
+            }
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+
+
+        }
+        else if (id == R.id.setting) {
 
         }
 

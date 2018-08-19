@@ -1,8 +1,10 @@
 package com.dongduk.hangeul.hangeul_test1;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -74,6 +76,9 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("");
+
+        TextView tvTitle = (TextView)findViewById(R.id.tvTitle);
+        tvTitle.setText(getString(R.string.todayWord));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -151,27 +156,27 @@ public class MainActivity extends BaseActivity
 
                 editor.commit();
 
-                for(int i = 0; i < value.getContent().length(); i++) {
-                    meaning = "";
-
-                    if(value.getContent().charAt(i) == ' ') {
-                        meaning += value.getContent().charAt(i) + "\n\n";
-                        countSpace ++;
-                    } else {
-                        meaning += value.getContent().charAt(i);
-                    }
-
-                    if (countSpace <3) meaning01 += meaning;
-                    else if (countSpace >=3 && countSpace < 6) meaning02 += meaning;
-                    else if (countSpace >=6 && countSpace < 9) meaning03 += meaning;
-                    else if (countSpace >=9) meaning04 += meaning;
-                }
-
-                tvWordMain.setText(value.getTitle().toString());
-                tvMeaning01.setText("\n\n" + meaning01);
-                tvMeaning02.setText(meaning02);
-                tvMeaning03.setText(meaning03);
-                tvMeaning04.setText(meaning04);
+//                for(int i = 0; i < value.getContent().length(); i++) {
+//                    meaning = "";
+//
+//                    if(value.getContent().charAt(i) == ' ') {
+//                        meaning += value.getContent().charAt(i) + "\n\n";
+//                        countSpace ++;
+//                    } else {
+//                        meaning += value.getContent().charAt(i);
+//                    }
+//
+//                    if (countSpace <3) meaning01 += meaning;
+//                    else if (countSpace >=3 && countSpace < 6) meaning02 += meaning;
+//                    else if (countSpace >=6 && countSpace < 9) meaning03 += meaning;
+//                    else if (countSpace >=9) meaning04 += meaning;
+//                }
+//
+//                tvWordMain.setText(value.getTitle().toString());
+//                tvMeaning01.setText("\n\n" + meaning01);
+//                tvMeaning02.setText(meaning02);
+//                tvMeaning03.setText(meaning03);
+//                tvMeaning04.setText(meaning04);
             }
 
             @Override
@@ -202,6 +207,39 @@ public class MainActivity extends BaseActivity
                 mIntent = new Intent(this, ListingActivity.class);
                 startActivity(mIntent);
                 break;
+            case R.id.tvWordMain:
+                final LinearLayout dialogLayout = (LinearLayout) View.inflate(this, R.layout.dialog_view_en, null);
+
+//                TextView title = new TextView(this);
+//                title.setText(tvWordMain.getText());
+//                title.setGravity(Gravity.CENTER);
+//                title.setTextColor(Color.parseColor("#c4792f"));
+
+//                TextView mean = new TextView(MainActivity.this);
+//                mean.setText("sal gap da");
+//                mean.setGravity(Gravity.CENTER);
+
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setView(dialogLayout)
+                        .show();
+
+
+                TextView title = (TextView) dialog.findViewById(R.id.tvWordEng);
+                title.setText(tvWordMain.getText());
+                title.setGravity(Gravity.CENTER);
+                title.setTextColor(Color.parseColor("#c4792f"));
+
+                TextView mean = (TextView) dialog.findViewById(R.id.tvMeanEng);
+                mean.setText("To be tender, affectionate to sb");
+                //dialog.setCustomTitle(title);
+
+                WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                params.alpha = 50;
+                dialog.getWindow().setAttributes(params);
+                break;
+
         }
     }
 
@@ -221,7 +259,7 @@ public class MainActivity extends BaseActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.barbtn, menu);
         MenuItem item = menu.getItem(0);
-        item.setTitle("담기");
+        item.setTitle(getString(R.string.save));
 
         return true;
     }
@@ -233,16 +271,17 @@ public class MainActivity extends BaseActivity
         if (id == R.id.barBtn) {
             final LinearLayout dialogLayout = (LinearLayout) View.inflate(this, R.layout.dialog_saveword, null);
 
-            TextView title = new TextView(this);
-            title.setText(tvWordMain.getText());
-            title.setGravity(Gravity.CENTER);
-            title.setTextColor(Color.parseColor("#c4792f"));
-
             AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle(tvWordMain.getText())
                     .setView(dialogLayout)
                     .show();
 
+            TextView title = (TextView) dialog.findViewById(R.id.tvWordSaved);
+            title.setText(value.getTitle().toString());
+            title.setGravity(Gravity.CENTER);
+            title.setTextColor(Color.parseColor("#c4792f"));
+
+//            TextView mean = (TextView) dialog.findViewById(R.id.textView3);
+//            mean.setText(value.getContent().toString());
             //dialog.setCustomTitle(title);
 
             WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
@@ -274,7 +313,35 @@ public class MainActivity extends BaseActivity
             mIntent = new Intent(this, MyRecordActivity.class);
             startActivity(mIntent);
             finish();
-        } else if (id == R.id.setting) {
+        }
+        else if(id == R.id.language) {
+            Locale locale = getResources().getConfiguration().locale;
+            String language =  locale.getLanguage();
+
+            Locale en = Locale.US;
+            Locale ko = Locale.KOREA;
+
+            Configuration config = new Configuration();
+
+            Log.d("MainActivity", "언어 : " + language);
+
+            if(language.equals("en")){
+                config.locale = ko;
+
+            }
+            else{
+                config.locale = en;
+
+            }
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+
+
+        }
+        else if (id == R.id.setting) {
             // 로그아웃
             auth.getInstance().signOut();
             Intent sign_intent = new Intent(getApplicationContext(), LoginActivity.class);
