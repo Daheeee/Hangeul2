@@ -39,7 +39,7 @@
         android:layout_gravity="center"
         android:background="#ffffff"
         android:gravity="top"
-        android:hint="우리말로 아름다운 문장을 완성해보세요.\n(100자 내외)"
+        android:hint="@string/writing_desc"
         android:paddingBottom="17dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"

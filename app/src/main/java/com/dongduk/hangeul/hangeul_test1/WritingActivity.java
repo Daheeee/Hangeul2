@@ -102,7 +102,7 @@ public class WritingActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.barBtn:
                 dialog = new AlertDialog.Builder(this)
-                        .setMessage("글을 저장합니다")
+                        .setMessage(getString(R.string.save_writing))
 
                         .setPositiveButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
                             @Override
